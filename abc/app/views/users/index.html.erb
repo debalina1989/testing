@@ -1,0 +1,45 @@
+
+<h1>users#index</h1>
+
+<table>
+<tr>
+<th>Users</th>
+</tr>
+<tr>
+<td>A</td>
+<td><%= link_to "show", user_path(:id) %></td>
+<td><%= link_to "edit", edit_user_path(:id) %></td>
+<td><%= link_to "delete", user_path(:id), :method => :delete %></td>
+</tr>
+<tr>
+<td>B</td>
+<td><%= link_to "show", user_path(:id) %></td>
+<td><%= link_to "edit", edit_user_path(:id) %></td>
+<td><%= link_to "delete", user_path(:id), :method => :delete %></td>
+</tr>
+<tr>
+<td>C</td>
+<td><%= link_to "show", user_path(:id) %></td>
+<td><%= link_to "edit", edit_user_path(:id) %></td>
+<td><%= link_to "delete", user_path(:id), :method => :delete %></td>
+</tr>
+</table>
+
+
+<table>
+
+<% @users.each do |u| %>
+<tr>
+ <td><%= u.name %></td>
+ <td><%= u.email %></td>
+ <td><%= link_to "show", user_path(u) %></td>
+<td><%= link_to "edit", edit_user_path(u) %></td>
+<td><%= link_to "delete", user_path(u), :method => :delete %></td>
+</tr>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to "Add_user", new_user_path %>
+
