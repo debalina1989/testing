@@ -1,0 +1,36 @@
+
+<h1>users#index</h1>
+
+<table border=2px>
+<tr>
+<th>Username</th>
+<th>Email</th>
+<th>First Name </th>
+<th>Last Name </th>
+<th>Full Name</th>
+<th>Contact</th>
+<th>User Type</th>
+</tr>
+
+
+<% @users.each do |u| %>
+<tr>
+ <td><%= u.username %></td>
+ <td><%= u.email %></td>
+<td><%= u.firstname %></td>
+<td><%= u.lastname %></td>
+<td><%= u.fullname %></td>
+<td><%= u.contact %></td>
+<td><%= u.user_type %></td>
+
+ <td><%= link_to "show", user_path(u) %></td>
+<td><%= link_to "edit", edit_user_path(u) %></td>
+<td><%= link_to "delete", user_path(u), :method => :delete %></td>
+</tr>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to "Create_User", new_user_path %>
+
