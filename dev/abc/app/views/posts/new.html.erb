@@ -1,0 +1,16 @@
+<h1>New Post</h1>
+
+<%= form_for([@user, @user.posts.build]) do |p| %>
+<%= p.label :title %>
+<br>
+<%= p.text_field :title %>
+<br>
+<%= p.label :description %>
+<br>
+<%= p.text_area :description %>
+<br>
+<%= p.submit %>
+<% end %>
+
+<br>
+<%= link_to "Back", user_path(@user) %>
