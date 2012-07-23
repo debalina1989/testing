@@ -7,10 +7,8 @@ validates :username, :presence=> true, :length=> {:maximum=> 10}
 validates :email, :presence=> true
 validates :firstname, :lastname, :presence=> true
 
-before_create :ensure_username_present
-before_create :check_name_in_lowercase
-before_create :check_fullname
-
+before_create :ensure_username_present, :check_name_in_lowercase, :check_fullname
+before_update :ensure_username_present, :check_name_in_lowercase, :check_fullname
 
 protected
 def ensure_username_present
@@ -24,16 +22,19 @@ def check_name_in_lowercase
 if username==username.downcase
 self.username=username.capitalize unless username.blank?
 end
+if firstname==firstname.downcase || lastname==lastname.downcase
+self.firstname=firstname.capitalize unless firstname.blank?
+self.lastname=lastname.capitalize unless lastname.blank?
+end
+
 end
 
 protected
 def check_fullname
-if fullname.nil?
-self.fullname= firstname + " " + lastname
+if fullname.blank?
+self.fullname= firstname.capitalize + " " + lastname.capitalize
 end
-if fullname==fullname.downcase
-self.fullname=fullname.capitalize unless fullname.blank?
-end
+
 end
 
 

@@ -1,35 +1,25 @@
 class PostsController < ApplicationController
 
-def index
-@posts=Post.all
-end
-
-def show
-@post=Post.find(params[:id])
-end
-
 def new
-@post=Post.new
+@user=User.find(params[:user_id])
+@post=@user.posts.new
 end
 
 def create
-Post.create(params[:post])
-redirect_to posts_path
+@user=User.find(params[:user_id])
+@post=@user.posts.create(params[:post])
+redirect_to user_path(@user)
 end
 
-def edit
-@post=Post.find(params[:id])
-end
-
-def update
-@post=Post.find(params[:id])
-@post.update_attributes(params[:post])
-redirect_to posts_path
+def show
+@user=User.find(params[:id])
+@post=@user.posts.find(params[:user_id])
 end
 
 def destroy
-Post.destroy(params[:id])
-redirect_to posts_path
+@user=User.find(params[:id])
+@user.posts.destroy(params[:user_id])
+redirect_to user_path(@user)
 end
 
 end

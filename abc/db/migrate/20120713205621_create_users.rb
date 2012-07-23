@@ -1,5 +1,5 @@
 class CreateUsers < ActiveRecord::Migration
-has_many :posts
+
 
   def change
     create_table :users do |t|
