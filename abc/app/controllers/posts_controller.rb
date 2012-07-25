@@ -12,13 +12,13 @@ redirect_to user_path(@user)
 end
 
 def show
-@user=User.find(params[:id])
-@post=@user.posts.find(params[:user_id])
+@user=User.find(params[:user_id])
+@post=@user.posts.find(params[:id])
 end
 
 def destroy
-@user=User.find(params[:id])
-@user.posts.destroy(params[:user_id])
+@user=User.find(params[:user_id])
+@user.posts.destroy(params[:id])
 redirect_to user_path(@user)
 end
 

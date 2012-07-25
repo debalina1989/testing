@@ -1,5 +1,5 @@
-<h1>users#show</h1>
-
+<h2>Show User::</h2>
+<div class="container">
 <label>Name:</label>
 <%= @user.username %>
 <br>
@@ -24,14 +24,15 @@
 <br>
 <%= link_to "Index Page", users_path %>
 <br>
-<hr>
-<label>Posts::</label>
+</div>
+<%= render "shared/post" %>
+<div id="post">
+<label  id="pst">Posts::</label>
 <br>
-
-
-
-<ol>
+<br>
+<ol id="list">
 <% @user.posts.each do |p| %>
+
 <li><%= p.title %>
 <%= link_to "show", user_post_path(@user,p) %>
 <%= link_to "delete", user_post_path(@user,p), :method => :delete %></li>
@@ -39,3 +40,4 @@
 <% end %>
 
 </ol>
+</div>
