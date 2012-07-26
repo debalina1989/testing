@@ -1,8 +1,0 @@
-class AddIndexInPost < ActiveRecord::Migration
-  def up
-add_index :posts, :user_id
-  end
-
-  def down
-  end
-end
