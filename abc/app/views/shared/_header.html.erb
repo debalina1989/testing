@@ -1,0 +1,42 @@
+<head>
+<style>
+*{
+margin: 0;
+padding: 0;
+}
+
+#head {
+background-color: lavender;
+margin-bottom: 20px;
+}
+
+#logo {
+float: left;
+padding: 10px;
+}
+
+#title {
+float: left;
+color: darkblue;
+padding: 40px 10px;
+}
+
+.clearfix {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+</style>
+</head>
+<body>
+<header>
+<div id="head">
+<%= link_to image_tag("/images/lg.jpg", :size=> "120x100", :id=> "logo"), "#" %>
+<h1 id="title">Welcome to ABC Application</h1>
+<div class="clearfix"></div>
+</div>
+</header>
+</body>
