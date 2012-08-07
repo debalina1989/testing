@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About Us</title>
+  </head>
+  <body>
+<h2>About Us</h2>
+    <p>The indentation is optional—HTML is not sensitive to whitespace, and ignores both tabs and spaces—but it makes the document’s structure easier to see.</p>
+  </body>
+</html>

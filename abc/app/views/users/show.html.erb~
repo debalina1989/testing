@@ -1,0 +1,43 @@
+<h2>Show User::</h2>
+<div class="container">
+<label>Name:</label>
+<%= @user.username %>
+<br>
+<label>Email:</label>
+<%= @user.email %>
+<br>
+<label>First Name:</label>
+<%= @user.firstname %>
+<br>
+<label>Last Name:</label>
+<%= @user.lastname %>
+<br>
+<label>Full Name:</label>
+<%= @user.fullname %>
+<br>
+<label>Contact:</label>
+<%= @user.contact %>
+<br><label>User Type:</label>
+<%= @user.user_type %>
+<br>
+<%= link_to "Create Post", new_user_post_path(@user) %>
+<br>
+<%= link_to "Index Page", users_path %>
+<br>
+</div>
+<%= render "shared/post" %>
+<div id="post">
+<label  id="pst">Posts::</label>
+<br>
+<br>
+<ol id="list">
+<% @user.posts.each do |p| %>
+
+<li><%= p.title %>
+<%= link_to "show", user_post_path(@user,p) %>
+<%= link_to "delete", user_post_path(@user,p), :method => :delete %></li>
+
+<% end %>
+
+</ol>
+</div>

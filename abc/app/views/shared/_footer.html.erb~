@@ -33,11 +33,11 @@ color: darkcyan;
 <div id="foot">
 
 <ul class="nav">
-<li><%= link_to "home", home_path %></li>
+<li><a href="/static_pages/home">home</a></li>
 <li>|</li>
-<li><%= link_to "about", about_path %></li>
+<li><a href="/static_pages/about">about</a></li>
 <li>|</li>
-<li><%= link_to "contact", contact_path %></li>
+<li><a href="/static_pages/contact">contact us</a></li>
 </ul>
 <div class="clearfix"></div>
 </div>

@@ -24,7 +24,7 @@
 <td><%= u.contact %></td>
 <td><%= u.user_type %></td>
 
-<td><%= link_to "show", user_path(u) %></td>
+ <td><%= link_to "show", user_path(u) %></td>
 <td><%= link_to "edit", edit_user_path(u) %></td>
 <td><%= link_to "delete", user_path(u), :method => :delete %></td>
 
@@ -34,4 +34,5 @@
 
 <br>
 
+<%= link_to "Create_User", new_user_path %>
 </div>

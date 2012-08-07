@@ -37,9 +37,9 @@ padding: 40px 10px;
 <%= link_to image_tag("/images/lg.jpg", :size=> "120x100", :id=> "logo"), "#" %>
 <h1 id="title">Welcome to ABC Application</h1>
 <ul class="nav">
-<li><%= link_to "home", home_path %></li>
+<li><a href="/static_pages/home">home</a></li>
 
-<li><%= link_to "about", about_path %></li>
+<li><a href="/static_pages/contact">contact</a></li>
 
 <li><%= link_to "Sign in", "#" %></li>
 </ul>
