@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Home</title>
+  <title>A</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -51,6 +51,6 @@ font-size: 18px;
 </div>
 
 <%= render "shared/footer" %>
-<%= debug(params) if Rails.env.development? %>
+
 </body>
 </html>

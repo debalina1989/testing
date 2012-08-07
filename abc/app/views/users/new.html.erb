@@ -1,4 +1,5 @@
-<h1>New Form</h1>
+<title>Sign up</title>
+<h1>Sign up</h1>
 <div class="container">
 <%= form_for @user do |u| %>
 <%= u.label :name %>
@@ -9,16 +10,20 @@
 <%= u.text_field :email %>
 <br>
 <br>
+<%= u.label :password %>
+<%= u.password_field :password %>
+<br>
+<br>
+<%= u.label :confirm_password %>
+<%= u.password_field :confirm_password %>
+<br>
+<br>
 <%= u.label :firstname %>
 <%= u.text_field :firstname %>
 <br>
 <br>
 <%= u.label :lastname %>
 <%= u.text_field :lastname %>
-<br>
-<br>
-<%= u.label :fullname %>
-<%= u.text_field :fullname %>
 <br>
 <br>
 <%= u.label :contact %>
