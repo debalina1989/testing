@@ -1,43 +1,46 @@
 <title>Sign up</title>
 <h1>Sign up</h1>
-<div class="container">
-<%= form_for @user do |u| %>
-<%= u.label :name %>
-<%= u.text_field :username %>
-<br>
-<br>
-<%= u.label :email %>
-<%= u.text_field :email %>
-<br>
-<br>
-<%= u.label :password %>
-<%= u.password_field :password %>
-<br>
-<br>
-<%= u.label :confirm_password %>
-<%= u.password_field :confirm_password %>
-<br>
-<br>
-<%= u.label :firstname %>
-<%= u.text_field :firstname %>
-<br>
-<br>
-<%= u.label :lastname %>
-<%= u.text_field :lastname %>
-<br>
-<br>
-<%= u.label :contact %>
-<%= u.text_field :contact %>
-<br>
-<br>
-<%= u.label :user_type %>
-<%= u.text_field :user_type %>
-<br>
-<br>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @user do |u| %>
+    <%= render 'shared/error_messages' %>
+    <%= u.label :username %>
+    <%= u.text_field :username %>
+    <br>
+    <br>
+    <%= u.label :email %>
+    <%= u.text_field :email %>
+    <br>
+    <br>
+    <%= u.label :password %>
+    <%= u.password_field :password %>
+    <br>
+    <br>
+    <%= u.label :password_confirmation %>
+    <%= u.password_field :password_confirmation %>
+    <br>
+    <br>
+    <%= u.label :firstname %>
+    <%= u.text_field :firstname %>
+    <br>
+    <br>
+    <%= u.label :lastname %>
+    <%= u.text_field :lastname %>
+    <br>
+    <br>
+    <%= u.label :contact %>
+    <%= u.text_field :contact %>
+    <br>
+    <br>
+    <%= u.label :user_type %>
+    <%= u.text_field :user_type %>
+    <br>
+    <br>
+    
+    <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <% end %>
 
-<%= u.submit %>
-<% end %>
-
-<br>
-<%= link_to "Index Page", users_path %>
+    <br>
+    <%= link_to "Index Page", users_path %>
+  </div>
 </div>

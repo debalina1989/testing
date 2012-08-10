@@ -1,49 +1,34 @@
-<head>
-<style>
-*{
-margin: 0;
-padding: 0;
-}
 
-#head {
-background-color: lavender;
-margin-bottom: 20px;
-}
-
-#logo {
-float: left;
-padding: 10px;
-}
-
-#title {
-float: left;
-color: darkblue;
-padding: 40px 10px;
-}
-
-.clearfix {
-    clear: both;
-    content: ".";
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-
-</style>
-</head>
 <body>
-<header>
-<div id="head">
-<%= link_to image_tag("/images/lg.jpg", :size=> "120x100", :id=> "logo"), "#" %>
-<h1 id="title">Welcome to ABC Application</h1>
-<ul class="nav">
-<li><%= link_to "home", home_path %></li>
-
-<li><%= link_to "about", about_path %></li>
-
-<li><%= link_to "Sign in", "#" %></li>
-</ul>
-<div class="clearfix"></div>
-</div>
-</header>
+  <header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to image_tag("/images/logo.jpg", :size=> "80x80"), "#", id: "logo" %>
+        <nav>
+          <ul class="nav pull_right">
+            <li><%= link_to "Home", home_path %></li>
+            <li><%= link_to "About", about_path %></li>           
+            <% if signed_in? %>
+            <li><%= link_to "Users", '#' %></li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Sign out", signout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
+            <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
 </body>

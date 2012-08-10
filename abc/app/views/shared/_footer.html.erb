@@ -1,45 +1,16 @@
-<head>
-<style>
 
-#foot {
-background-color: lavender;
-margin-top: 20px;
-}
-
-.nav{
-float: right;
-padding: 20px;
-}
-
-.nav li{
-display: inline;
-color: #000000;
-padding: 0px 5px;
-}
-
-.nav a:link{
-text-decoration: none;
-}
-
-a:link, a:visited{
-color: darkcyan;
-}
-
-
-</style>
-</head>
 <body>
 <footer>
-<div id="foot">
-
-<ul class="nav">
+<div  class="footer" >
+<nav>
+<ul class="nav pull-right">
 <li><%= link_to "home", home_path %></li>
 <li>|</li>
 <li><%= link_to "about", about_path %></li>
 <li>|</li>
 <li><%= link_to "contact", contact_path %></li>
 </ul>
-<div class="clearfix"></div>
+</nav>
 </div>
 </footer>
 </body>
