@@ -17,10 +17,11 @@
 
 class User < ActiveRecord::Base
   attr_protected :created_at, :updated_at
+  attr_accessible :username, :email, :firstname, :lastname, :password, :password_confirmation
 
   has_secure_password
 
-  validates :username, :presence=> true, :length=> {:maximum=> 10}
+  validates :username, :presence=> true, :length=> {:maximum=> 25}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :firstname, :lastname, :presence => true
