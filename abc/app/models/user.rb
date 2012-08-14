@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_many :posts, dependent: :destroy
+
   validates :username, :presence=> true, :length=> {:maximum=> 25}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
@@ -32,8 +34,11 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  has_many :posts
 
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Post.where("user_id = ?", id)
+  end
 
   protected
 
@@ -59,6 +64,8 @@ class User < ActiveRecord::Base
       self.fullname= firstname.capitalize + " " + lastname.capitalize
     end
   end
+
+
 
   private
 

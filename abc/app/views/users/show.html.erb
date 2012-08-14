@@ -10,30 +10,32 @@
       </h1>
     </section>
   </aside>
+  
+  <div class="span8">
+    <% if @user.posts.any? %>
+    <h3>Posts (<%= @user.posts.count %>)</h3>
+    <ol class="microposts">
+      <%= render @posts %>
+    </ol>
+    <%= will_paginate @posts %>
+    <% end %>
+    
+    
+
+<!--
+        
+<ol id="list">
+<% @user.posts.each do |p| %>
+<li>
+<%= link_to "show", user_post_path(@user,p) %>
+<%= link_to "delete", user_post_path(@user,p), :method => :delete %>
+</li> 
+<% end %>  
+</ol>
+
+-->
+    
+  </div>
+  
 </div>
 
-<div>
-  <br>
-  <p><%= @user.fullname %>, <%= @user.email %></p>
-  <br>
-  
-  <%= link_to "Create Post", new_user_post_path(@user) %>
-  <br>
-  <%= link_to "Index Page", users_path %>
-  <br>
-</div>
-<%= render "shared/post" %>
-<div id="post">
-  <label  id="pst">Posts::</label>
-  <br>
-  <br>
-  <ol id="list">
-    <% @user.posts.each do |p| %>
-    <li>
-      <%= p.title %>
-      <%= link_to "show", user_post_path(@user,p) %>
-      <%= link_to "delete", user_post_path(@user,p), :method => :delete %>
-    </li> 
-    <% end %>  
-  </ol>
-</div>

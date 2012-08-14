@@ -7,9 +7,9 @@ FactoryGirl.define do
     firstname "Joseph"
     lastname "Ninja"
 
-
     factory :admin do
       admin true
     end
+
   end
 end

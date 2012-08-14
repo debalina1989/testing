@@ -13,6 +13,8 @@ resources:users do
 resources:posts
 end
 resources :sessions, only: [:new, :create, :destroy]
+resources :posts, only: [:create, :destroy]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

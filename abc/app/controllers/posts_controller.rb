@@ -1,25 +1,40 @@
 class PostsController < ApplicationController
+  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :correct_user,   only: :destroy
 
-def new
-@user=User.find(params[:user_id])
-@post=@user.posts.new
-end
 
-def create
-@user=User.find(params[:user_id])
-@post=@user.posts.create(params[:post])
-redirect_to user_path(@user)
-end
+  def new
+    @user=User.find(params[:user_id])
+    @post=@user.posts.new
+  end
 
-def show
-@user=User.find(params[:user_id])
-@post=@user.posts.find(params[:id])
-end
+  def create
+    @post = current_user.posts.build(params[:post])
+    if @post.save
+      flash[:success] = "Post created!"
+      redirect_to root_url
+    else
+      @feed_items = []
+      render 'static_pages/home'
+    end
 
-def destroy
-@user=User.find(params[:user_id])
-@user.posts.destroy(params[:id])
-redirect_to user_path(@user)
-end
+  end
+
+  def show
+    @user=User.find(params[:user_id])
+    @post=@user.posts.find(params[:id])
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to root_url
+  end
+
+  private
+
+  def correct_user
+    @post = current_user.posts.find_by_id(params[:id])
+    redirect_to root_url if @post.nil?
+  end
 
 end
