@@ -25,12 +25,56 @@ namespace :db do
     end
 
     users = User.all(limit: 6)
-    50.times do
-      title = Faker::Lorem.words(5)
-      content = Faker::Lorem.sentence(5)
-      users.each { |user| user.posts.create!(title: title,
+      50.times do
+         title = Faker::Lorem.words(5)
+         content = Faker::Lorem.sentence(5)
+         users.each { |user| user.posts.create!(title: title,
                                              content: content) }
-    end
+      end
 
+    make_users
+    make_posts
+    make_relationships
   end
 end
+
+def make_users
+  admin = User.create!(username:     "User",
+                       email:    "xample@railstutorial.org",
+                       password: "foobar",
+                       password_confirmation: "foobar",
+                       firstname: "Example",
+                       lastname: "sample")
+
+  admin.toggle!(:admin)
+  99.times do |n|
+    username  = Faker::Name.name
+    email = "xample-#{n+1}@railstutorial.org"
+    password  = "password"
+    User.create!(username:   username,
+                 email:    email,
+                 password: password,
+                 password_confirmation: password,
+                 firstname: "Example",
+                 lastname: "sample")
+  end
+end
+
+def make_posts
+  users = User.all(limit: 6)
+  50.times do
+    content = Faker::Lorem.sentence(5)
+    users.each { |user| user.posts.create!(content: content) }
+  end
+end
+
+def make_relationships
+  users = User.all
+  user  = users.first
+  followed_users = users[2..50]
+  followers      = users[3..40]
+  followed_users.each { |followed| user.follow!(followed) }
+  followers.each      { |follower| follower.follow!(user) }
+end
+
+

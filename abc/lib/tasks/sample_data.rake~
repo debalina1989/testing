@@ -8,10 +8,10 @@ namespace :db do
                  firstname: "Example",
                  lastname: "sample")
 
-    admin.toggle!(:admin)
+   # admin.toggle!(:admin)
 
     99.times do |n|
-     username  = Faker::Name.name
+      username  = Faker::Name.name
       email = "example-#{n+1}@railstutorial.org"
       password  = "password"
       firstname = "Example"
@@ -23,5 +23,14 @@ namespace :db do
                    firstname: firstname,
                    lastname: lastname)
     end
+
+    users = User.all(limit: 6)
+    50.times do
+      title = Faker::Lorem.words(5)
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.posts.create!(title: title,
+                                             content: content) }
+    end
+
   end
 end

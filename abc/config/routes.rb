@@ -9,11 +9,15 @@ Abc::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
 
-resources:users do
-resources:posts
-end
-resources :sessions, only: [:new, :create, :destroy]
-resources :posts, only: [:create, :destroy]
+  resources:users do
+    resources:posts
+    member do
+      get :following, :followers
+    end
+  end
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :posts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -64,7 +68,7 @@ resources :posts, only: [:create, :destroy]
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
- root to: 'static_pages#home'
+  root to: 'static_pages#home'
 
   # See how all your routes lay out with "rake routes"
 
