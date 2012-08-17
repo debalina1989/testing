@@ -10,10 +10,10 @@ Abc::Application.routes.draw do
 
 
   resources:users do
-    resources:posts
     member do
       get :following, :followers
     end
+    resources:posts
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts, only: [:create, :destroy]
