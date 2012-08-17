@@ -24,20 +24,10 @@ class UsersController < ApplicationController
       sign_in @user
       flash[:success] = "Welcome to the ABC Application!"
       redirect_to @user
+      UserMailer.welcome_email(@user).deliver
     else
       render 'new'
     end
-
-=begin
-      respond_to do |format|
-        if @user.save
-          UserMailer.welcome_email(@user).deliver
-          format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        else
-          redirect_to signup_path
-        end
-      end
-=end
 
   end
 
