@@ -21,9 +21,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the ABC Application!"
-      redirect_to @user
+    #  sign_in @user
+   #   flash[:success] = "Welcome to the ABC Application!"
+      redirect_to signin_path
       UserMailer.welcome_email(@user).deliver
     else
       render 'new'
@@ -65,6 +65,15 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
+
+  def verify_account
+    user = User.find(params[:id])
+    user.update_attribute(:verified_at, Time.now)
+
+    redirect_to signin_path
+   # flash[:success] = "You are a verified user now."
+  end
+
 
 
   private

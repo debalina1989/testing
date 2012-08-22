@@ -9,9 +9,11 @@ Abc::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
 
+
   resources:users do
     member do
       get :following, :followers
+      get :verify_account
     end
     resources:posts
   end

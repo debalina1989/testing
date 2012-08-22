@@ -1,0 +1,1 @@
+<% link_to "verify your account", user_path, :method => :verify %>

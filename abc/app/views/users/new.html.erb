@@ -31,11 +31,24 @@
     <%= u.label :contact %>
     <%= u.text_field :contact %>
     <br>
-    <br>
+<!--    <br>
+
     <%= u.label :user_type %>
     <%= u.text_field :user_type %>
     <br>
+    <br> -->
+
+    <p>
+      Our terms and conditions:<br>
+      abcdefghijklmnopqrstuvwxyz
+    </p>
+
+   
+   
+    <%= u.check_box :terms_of_service %>
+    <label>I accept</label>
     <br>
+    
     
     <%= u.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>

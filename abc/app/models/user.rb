@@ -16,8 +16,8 @@
 #
 
 class User < ActiveRecord::Base
-  attr_protected :created_at, :updated_at
-  attr_accessible :username, :email, :firstname, :lastname, :password, :password_confirmation
+  attr_protected :id, :created_at, :updated_at
+  attr_accessible :username, :email, :firstname, :lastname, :password, :password_confirmation, :verified_at, :terms_of_service, :contact
 
   has_secure_password
 
@@ -25,25 +25,29 @@ class User < ActiveRecord::Base
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id",
-                                    class_name:  "Relationship",
-                                     dependent:   :destroy
+  class_name:  "Relationship",
+  dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
   validates :username, :presence=> true, :length=> {:maximum=> 25}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :firstname, :lastname, :presence => true
-  validates :password, :password_confirmation, :presence=> true
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, :allow_blank => true
+  #validates :firstname, :lastname, :presence => true
+  #validates :password, :password_confirmation, :presence=> true
+  validates :contact, :numericality => true, :allow_blank => true
+  validates :terms_of_service, :acceptance => true
 
-  before_create :ensure_username_present, :check_name_in_lowercase, :check_fullname
-  before_update :ensure_username_present, :check_name_in_lowercase, :check_fullname
+
+  before_validation :ensure_username_present
+  before_create :check_name_in_lowercase, :check_fullname
+  before_update :check_name_in_lowercase, :check_fullname
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
 
   def feed
     # This is preliminary. See "Following users" for the full implementation.
-    #    Post.where("user_id = ?", id)
+    # Post.where("user_id = ?", id)
 
     Post.from_users_followed_by(self)
 
@@ -60,6 +64,11 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
   end
+
+  def verified?
+    !self.verified_at.nil?
+  end
+
 
   protected
 
@@ -85,8 +94,6 @@ class User < ActiveRecord::Base
       self.fullname= firstname.capitalize + " " + lastname.capitalize
     end
   end
-
-
 
   private
 
