@@ -29,9 +29,10 @@ class User < ActiveRecord::Base
   dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
-  validates :username, :presence=> true, :length=> {:maximum=> 25}
+  validates :username, :length=> {:maximum=> 25}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, :allow_blank => true
+  #validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, :allow_blank => true
+  validates :email, uniqueness: { case_sensitive: false}
   #validates :firstname, :lastname, :presence => true
   #validates :password, :password_confirmation, :presence=> true
   validates :contact, :numericality => true, :allow_blank => true

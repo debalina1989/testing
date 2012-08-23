@@ -5,19 +5,19 @@
     <%= form_for @user do |u| %>
     <%= render 'shared/error_messages', object: u.object %>
     <%= u.label :username %>
-    <%= u.text_field :username %>
+    <%= u.text_field :username, :required => true %>
     <br>
     <br>
     <%= u.label :email %>
-    <%= u.text_field :email %>
+    <%= u.email_field :email, :required => true %>
     <br>
     <br>
     <%= u.label :password %>
-    <%= u.password_field :password %>
+    <%= u.password_field :password, :required => true %>
     <br>
     <br>
     <%= u.label :password_confirmation %>
-    <%= u.password_field :password_confirmation %>
+    <%= u.password_field :password_confirmation, :required => true %>
     <br>
     <br>
     <%= u.label :firstname %>
